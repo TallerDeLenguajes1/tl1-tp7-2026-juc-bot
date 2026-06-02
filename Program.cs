@@ -1,16 +1,16 @@
 ﻿using EspacioCalculadora;
 
-Console.WriteLine("Hello, World!");
-
 Calculadora miCalculadora = new Calculadora();
-miCalculadora.Limpiar();
-miCalculadora.Sumar(5);
-Console.WriteLine("Resultado: " + miCalculadora.Dato);
+
 bool continuar = true;
 
-void operar(int operacion)
+int operar()
 {
-    
+            int num;
+            string numeroIngresado;
+            numeroIngresado = Console.ReadLine();
+            bool resultado = int.TryParse(numeroIngresado, out num);
+            return num;
 }
 
 while(continuar)
@@ -26,14 +26,28 @@ while(continuar)
     {
         case "1":
             Console.WriteLine("Ingrese el numero a sumar");
-            int num;
-            string numeroIngresado;
-            numeroIngresado = Console.ReadLine();
-            bool resultado = int.TryParse(numeroIngresado, out num);
-            miCalculadora.Sumar(num);
+            miCalculadora.Sumar(operar());
             break;
         case "2":
             Console.WriteLine("Ingrese el numero a restar");
+            miCalculadora.Restar(operar());
             break;
+        case "3":
+            Console.WriteLine("Ingrese el numero a multiplicar");
+            miCalculadora.Multiplicar(operar());
+            break;
+        case "4":
+            Console.WriteLine("Ingrese el numero a Dividir");
+            miCalculadora.Dividir(operar());
+            break;
+        case "5":
+            miCalculadora.Limpiar();
+            break;
+        case "0":
+            continuar = false;
+            break;
+        default:
+        Console.WriteLine("operacion invalida");
+        break;
     }
 }
